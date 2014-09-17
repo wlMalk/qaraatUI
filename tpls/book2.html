@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="rtl book">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeYIe8e49NK-wD5Wk2KYcK-q2sRCYt-ZY&sensor=false"></script>
+        <link rel="stylesheet" href="hiqaraat.css">
+        <script>
+            var bookCoordinates = [
+                new google.maps.LatLng(21.5611239,39.7774205),
+                new google.maps.LatLng(24.4651351,39.6067428),
+                new google.maps.LatLng(24.7251918,46.8225288),
+                new google.maps.LatLng(26.3305723,50.1259559),
+                new google.maps.LatLng(49.2766497,-123.1283663)
+            ];
+            var coordinatesInfo = [
+                ['مكة، السعودية', 'LeAnas'],
+                ['المدينة، السعودية', 'someOne'],
+                ['الرياض، السعودية', 'someTwo'],
+                ['الظهران، السعودية', 'someThree'],
+                ['فانكوفر، كندا', 'wlMalk']
+            ];
+        </script>
+        <script src="prints.map.js"></script>
+    </head>
+    <body>
+        {{-header}}
+
+        <div id="wrapper">
+            <div class="container">
+                <header id="subheader">
+                    <div class="book-cover"><a href="#" style="background:#7b899e;"><img src="minwaraq.jpg"></a></div>
+                    <ul class="action-btns">
+                        <li class="book-with-me"><a href="#">الكتاب معي</a></li>
+                        <li class="follow"><a href="#">متابعة</a></li>
+                    </ul>
+                </header>
+                <div class="column col-1st">
+                    <div id="locations-timeline">
+                        <div class="timeline"></div>
+                        <div class="blocks-holder">
+                            <div id="timeline-location-block-1" class="timeline-location-block">
+                                <span class="arrow"></span>
+                                <div class="circle released"></div>
+                                <div class="timeline-location-block-btns">
+                                    <ul>
+                                        <li class="like-btn"><a href="#"></a></li>
+                                        <li class="comment-btn"><a href="#"></a></li>
+                                        <li class="share-btn"><a href="#"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-location-block-main">
+                                    <div class="location">
+                                        <a href="#/"><h1>فانكوفر، كندا</h1></a>
+                                        <p class="location-note">شقة وليد المالكي، في المطبخ جنب المايكروويف</p>
+                                    </div>
+                                    <div class="note">
+                                        <p>بلا بلا بلا بلبلة يبلبل فوق الشجرة</p>
+                                    </div>
+                                    <div class="location-poster">
+                                        <a href="#"><img src="wlmalk.jpg" width="25px" height="25px"><h3>wlMalk</h3></a>
+                                        <div class="rating">
+                                            <span class="stars"></span>
+                                            <span class="stars-bar" style="width: 63px;"></span>
+                                        </div>
+<!--                                        <span>٠٠:٥٣ السبت، ٧ يونيو ٢٠١٤</span>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="timeline-location-block-1" class="timeline-location-block">
+                                <span class="arrow"></span>
+                                <div class="circle released"></div>
+                                <div class="timeline-location-block-btns">
+                                    <ul>
+                                        <li class="like-btn"><a href="#"></a></li>
+                                        <li class="comment-btn"><a href="#"></a></li>
+                                        <li class="share-btn"><a href="#"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-location-block-main">
+                                    <div class="location">
+                                        <a href="#/"><h1>فانكوفر، كندا</h1></a>
+                                        <p class="location-note">شقة وليد المالكي، في المطبخ جنب المايكروويف</p>
+                                    </div>
+                                    <div class="note">
+                                        <p>بلا بلا بلا بلبلة يبلبل فوق الشجرة</p>
+                                    </div>
+                                    <div class="location-poster">
+                                        <a href="#"><img src="wlmalk.jpg" width="25px" height="25px"><h3>wlMalk</h3></a>
+                                        <div class="rating">
+                                            <span class="stars"></span>
+                                            <span class="stars-bar" style="width: 63px;"></span>
+                                        </div>
+<!--                                        <span>٠٠:٥٣ السبت، ٧ يونيو ٢٠١٤</span>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="timeline-location-block-1" class="timeline-location-block">
+                                <span class="arrow"></span>
+                                <div class="circle released"></div>
+                                <div class="timeline-location-block-btns">
+                                    <ul>
+                                        <li class="like-btn"><a href="#"></a></li>
+                                        <li class="comment-btn"><a href="#"></a></li>
+                                        <li class="share-btn"><a href="#"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-location-block-main">
+                                    <div class="location">
+                                        <a href="#/"><h1>فانكوفر، كندا</h1></a>
+                                        <p class="location-note">شقة وليد المالكي، في المطبخ جنب المايكروويف</p>
+                                    </div>
+                                    <div class="note">
+                                        <p>بلا بلا بلا بلبلة يبلبل فوق الشجرة</p>
+                                    </div>
+                                    <div class="location-poster">
+                                        <a href="#"><img src="wlmalk.jpg" width="25px" height="25px"><h3>wlMalk</h3></a>
+                                        <div class="rating">
+                                            <span class="stars"></span>
+                                            <span class="stars-bar" style="width: 63px;"></span>
+                                        </div>
+<!--                                        <span>٠٠:٥٣ السبت، ٧ يونيو ٢٠١٤</span>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="timeline-location-block-1" class="timeline-location-block">
+                                <span class="arrow"></span>
+                                <div class="circle released"></div>
+                                <div class="timeline-location-block-btns">
+                                    <ul>
+                                        <li class="like-btn"><a href="#"></a></li>
+                                        <li class="comment-btn"><a href="#"></a></li>
+                                        <li class="share-btn"><a href="#"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-location-block-main">
+                                    <div class="location">
+                                        <a href="#/"><h1>فانكوفر، كندا</h1></a>
+                                        <p class="location-note">شقة وليد المالكي، في المطبخ جنب المايكروويف</p>
+                                    </div>
+                                    <div class="note">
+                                        <p>بلا بلا بلا بلبلة يبلبل فوق الشجرة</p>
+                                    </div>
+                                    <div class="location-poster">
+                                        <a href="#"><img src="wlmalk.jpg" width="25px" height="25px"><h3>wlMalk</h3></a>
+                                        <div class="rating">
+                                            <span class="stars"></span>
+                                            <span class="stars-bar" style="width: 63px;"></span>
+                                        </div>
+<!--                                        <span>٠٠:٥٣ السبت، ٧ يونيو ٢٠١٤</span>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column col-2nd">
+                    <div id="content">
+                        <div id="map-canvas"></div>
+                    </div>
+                </div>
+                <div class="column col-3rd">
+                    <header id="subheader-2nd"></header>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
