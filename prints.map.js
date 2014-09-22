@@ -83,10 +83,10 @@ function initialize() {
             prevLocation();
         }
     });
-    $('#map-nav-next').on('click', nextLocation);
-    $('#map-nav-prev').on('click', prevLocation);
-    $('#map-zoom-in').on('click', zoomIn);
-    $('#map-zoom-out').on('click', zoomOut);
+    $('#map-tools ul:last-child li:first-child').on('click', nextLocation);
+    $('#map-tools ul:last-child li:last-child').on('click', prevLocation);
+    $('#map-tools ul:first-child li:first-child').on('click', zoomIn);
+    $('#map-tools ul:first-child li:last-child').on('click', zoomOut);
     bookPath.setMap(map);
     var bookIcon = new google.maps.MarkerImage("logo.svg",
         null, 

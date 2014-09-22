@@ -72,10 +72,16 @@ $value7 : 200px;
         background: darken($btnColor, 5%);
     }
 }
-@mixin buttonToLighter($btnColor) {
+@mixin buttonToLighter($btnColor, $withColor) {
     background: $btnColor;
+    @if($withColor){
+        color: lighten($btnColor, 25%);
+    }
     &:hover{
         background: lighten($btnColor, 8%);
+        @if($withColor){
+            color: lighten(lighten($btnColor, 8%), 25%);
+        }
     }
 }
 
@@ -88,32 +94,34 @@ $value7 : 200px;
     font-family: DroidKufiRegular;
     src: url(DroidKufi-Regular.ttf);
 }
-
-html.rtl{
-    direction: rtl;
-    text-align: right;
-    #nav{
-        right: 0;
-    }
-    #wrapper{
-        & > .container{
-            & > .column{
-                float: right;
-            }
-            & > .col-1st{
-                right: 0;
-            }
-            & > .col-2nd{
-                right: $value2;
-            }
-            & > .col-3rd{
-                left: 0;
+html{
+    height: 100%;
+    &.rtl{
+        direction: rtl;
+        text-align: right;
+        #nav{
+            right: 0;
+        }
+        #wrapper{
+            & > .container{
+                & > .column{
+                    float: right;
+                }
+                & > .col-1st{
+                    right: 0;
+                }
+                & > .col-2nd{
+                    right: $value2;
+                }
+                & > .col-3rd{
+                    left: 0;
+                }
             }
         }
     }
 }
-
-body{
+body {
+    min-height: 100%;
     background: $color4;
     margin: 0;
     font-family: 'DroidKufiRegular';
@@ -399,30 +407,33 @@ body{
     bottom: 0;
     right: 0;
     width: 50%;
-    height: $value4;
+    height: $value4 - 5;
     ul{
         list-style: none;
         margin: 0;
         padding: 0;
         position: absolute;
         top: 0;
-        height: $value4;
+        height: $value4 - 5;
         &:first-child, &:last-child{
-            width: $value4 * 2;
+            width: ($value4 - 5) * 2;
             li{
-                width: $value4;
-                height: $value4;
+                width: $value4 - 5;
+                height: $value4 - 5;
                 float: right; //rtl
                 cursor: pointer;
-                @include buttonToLighter(lighten($color4, 15%));
+                @include buttonToLighter(lighten($color4, 15%), true);
+                text-align: center;
+                line-height: $value4 - 5;
+                font-size: 20px;
             }
         }
         &:nth-child(1){
             right: 0;//rtl
         }
         &:nth-child(2){
-            right: $value4 * 2;
-            width: calc( 100% - #{$value4 * 4} );
+            right: ($value4 - 5) * 2;
+            width: calc( 100% - #{($value4 - 5) * 4} );
         }
         &:nth-child(3){
             left: 0;
@@ -642,20 +653,14 @@ body{
                 .rating{
                     height: 18px;
                     width: 90px;
-                    background: #272e34;
                     float: left;
-                    .stars{
+                    color: #ffd700;
+                    span{
                         height: 18px;
-                        width: 90px;
-                        display: block;
-                        background: url(srating.png);
-                        background-size: 90px 18px;
-                        position: absolute;
-                    }
-                    .stars-bar{
-                        height: 18px;
-                        display: block;
-                        background: #ffd700;
+                        width: 18px;
+                        line-height: 0px;
+                        font-size: 17px;
+                        text-align: center;
                         float: left;
                     }
                 }
