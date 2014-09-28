@@ -14,19 +14,6 @@ $value5 : 3px;
 $value6 : 84px;
 $value7 : 200px;
 
-$screen-lg : 1200px;
-$screen-md : 992px;
-$screen-sm : 768px;
-$screen-xs : 480px;
-
-$screen-lg-min : $screen-lg;
-$screen-md-min : $screen-md;
-$screen-sm-min : $screen-sm;
-$screen-xs-min : $screen-xs;
-
-$screen-md-max : $screen-lg-min - 1;
-$screen-sm-max : $screen-md-min - 1;
-$screen-xs-max : $screen-sm-min - 1;
 
 @mixin box-sizing($box-model) {
   -webkit-box-sizing: $box-model; // Safari <= 5
@@ -163,6 +150,29 @@ body {
         cursor: pointer;
     }
 }
+#header-logo{
+    a{
+        width: $value1;
+        height: $value1;
+        display: block;
+    }
+    svg{
+        position: absolute;
+        width: ( $value1 - 10px ) - ( ( $value1  - 10px ) / 3 );
+        margin: ( ( $value1 + 20px ) / 3 ) / 2;
+    }
+    .logo-book, .logo-arrow{
+        fill: lighten($color4, 20%);
+    }
+    &:hover{
+        .logo-book{
+            fill: $color3;
+        }
+        .logo-arrow{
+            fill: $color2;
+        }
+    }
+}
 #wrapper{
     position: relative;
     & > .container{
@@ -222,38 +232,9 @@ body {
             @include box-sizing(border-box);
         }
     }
-    .logo{
-        a{
-            width: $value1;
-            height: $value1;
-            display: block;
-        }
-        svg{
-            position: absolute;
-            width: ( $value1 - 10px ) - ( ( $value1  - 10px ) / 3 );
-            margin: ( ( $value1 + 20px ) / 3 ) / 2;
-        }
-        .logo-book, .logo-arrow{
-            fill: lighten($color4, 20%);
-        }
-        &:hover{
-            .logo-book{
-                fill: $color3;
-            }
-            .logo-arrow{
-                fill: $color2;
-            }
-        }
-    }
     .search-block{
         width: 400px;
         padding: 15px 0;
-        @media screen and (max-width: $screen-sm) {
-            width: 150px;
-        }
-        @media screen and (max-width: $screen-xs) {
-            width: 100px;
-        }
         form{
             button{
                 height: $value1 - 30px;
@@ -426,9 +407,6 @@ body {
     right: 0;
     width: 50%;
     height: $value4 - 5;
-    @media screen and (max-width: $screen-md) {
-        width: 100%;
-    }
     ul{
         list-style: none;
         margin: 0;
