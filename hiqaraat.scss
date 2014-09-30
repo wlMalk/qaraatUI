@@ -14,6 +14,8 @@ $value5 : 3px;
 $value6 : 84px;
 $value7 : 200px;
 
+$value1-a : 50px;
+
 $screen-lg : 1200px;
 $screen-md : 992px;
 $screen-sm : 768px;
@@ -23,10 +25,12 @@ $screen-lg-min : $screen-lg;
 $screen-md-min : $screen-md;
 $screen-sm-min : $screen-sm;
 $screen-xs-min : $screen-xs;
+$screen-tn-min : 0;
 
 $screen-md-max : $screen-lg-min - 1;
 $screen-sm-max : $screen-md-min - 1;
 $screen-xs-max : $screen-sm-min - 1;
+$screen-tn-max : $screen-xs-min - 1;
 
 @mixin box-sizing($box-model) {
   -webkit-box-sizing: $box-model; // Safari <= 5
@@ -98,6 +102,48 @@ $screen-xs-max : $screen-sm-min - 1;
     }
 }
 
+@mixin respond-to($size) {
+    @if $size == tn {
+        @media only screen and (max-width: $screen-tn-max) { @content; }
+    }
+    @else if $size == xs {
+        @media only screen and (min-width: $screen-xs) and (max-width: $screen-xs-max) { @content; }
+    }
+    @else if $size == sm {
+        @media only screen and (min-width: $screen-sm) and (max-width: $screen-sm-max) { @content; }
+    }
+    @else if $size == md {
+        @media only screen and (min-width: $screen-md) and (max-width: $screen-md-max) { @content; }
+    }
+    @else if $size == lg {
+        @media only screen and (min-width: $screen-lg) { @content; }
+    }
+}
+@mixin respond-to-below($size) {
+    @if $size == xs {
+        @media only screen and (max-width: $screen-xs) { @content; }
+    }
+    @else if $size == sm {
+        @media only screen and (max-width: $screen-sm) { @content; }
+    }
+    @else if $size == md {
+        @media only screen and (max-width: $screen-md) { @content; }
+    }
+    @else if $size == lg {
+        @media only screen and (max-width: $screen-lg) { @content; }
+    }
+}
+@mixin respond-to-above($size) {
+    @if $size == xs {
+        @media only screen and (min-width: $screen-xs) { @content; }
+    }
+    @else if $size == sm {
+        @media only screen and (min-width: $screen-sm) { @content; }
+    }
+    @else if $size == md {
+        @media only screen and (min-width: $screen-md) { @content; }
+    }
+}
 
 @font-face{
     font-family: DroidKufiBold;
@@ -202,6 +248,7 @@ body {
 }
 #header{
     height: $value1;
+    @include respond-to-below(sm) { height: $value1-a; }
     position: fixed;
     background: $color1;
     padding: 0 0 0 15px;
@@ -211,6 +258,7 @@ body {
     > *{
         display: inline-block;
         height: $value1;
+        @include respond-to-below(sm) { height: $value1-a; }
         margin: 0;
         padding: 0;
     }
@@ -219,6 +267,7 @@ body {
         li{
             display: inline-block;
             height: $value1;
+            @include respond-to-below(sm) { height: $value1-a; }
             @include box-sizing(border-box);
         }
     }
@@ -226,12 +275,14 @@ body {
         a{
             width: $value1;
             height: $value1;
+            @include respond-to-below(sm) { height: $value1-a;width: $value1-a; }
             display: block;
         }
         svg{
             position: absolute;
             width: ( $value1 - 10px ) - ( ( $value1  - 10px ) / 3 );
             margin: ( ( $value1 + 20px ) / 3 ) / 2;
+            @include respond-to-below(sm) { width: ( $value1-a - 10px ) - ( ( $value1-a  - 10px ) / 3 );margin: ( ( $value1-a + 20px ) / 3 ) / 2; }
         }
         .logo-book, .logo-arrow{
             fill: lighten($color4, 20%);
@@ -248,15 +299,13 @@ body {
     .search-block{
         width: 400px;
         padding: 15px 0;
-        @media screen and (max-width: $screen-sm) {
-            width: 150px;
-        }
-        @media screen and (max-width: $screen-xs) {
-            width: 100px;
-        }
+        @include respond-to-below(sm) { padding: 5px 0; }
+        @include respond-to(sm) { width: 150px; }
+        @include respond-to-below(sm) { width: 100px; }
         form{
             button{
                 height: $value1 - 30px;
+                @include respond-to-below(sm) { height: $value1-a - 10px; }
                 border: none;
                 @include box-sizing(border-box);
                 @include border-radius(0);
@@ -272,6 +321,7 @@ body {
             input{
                 height: $value1 - 30px;
                 line-height: $value1 - 30px;
+                @include respond-to-below(sm) { height: $value1-a - 10px; line-height: $value1-a - 10px; }
                 @include box-sizing(border-box);
                 @include border-radius(0);
                 padding: 0 6px;
@@ -293,10 +343,12 @@ body {
             display: inline-block;
             margin: 10px 0;
             height: $value1 - 20px;
+            @include respond-to-below(sm) { height: $value1-a - 20px; }
             padding: 5px 0;
         }
         li{
             height: $value1 - 30px;
+            @include respond-to-below(sm) { height: $value1-a; }
             margin-left: 10px;
             &:last-child{
                 margin-left: 0;
@@ -426,9 +478,7 @@ body {
     right: 0;
     width: 50%;
     height: $value4 - 5;
-    @media screen and (max-width: $screen-md) {
-        width: 100%;
-    }
+    @include respond-to-below(md) { width: 100%; }
     ul{
         list-style: none;
         margin: 0;
