@@ -16,6 +16,8 @@ $value7 : 200px;
 
 $value1-a : 50px;
 
+$value2-a : 100%;
+
 $screen-lg : 1200px;
 $screen-md : 992px;
 $screen-sm : 768px;
@@ -248,7 +250,6 @@ body {
 }
 #header{
     height: $value1;
-    @include respond-to-below(sm) { height: $value1-a; }
     position: fixed;
     background: $color1;
     padding: 0 0 0 15px;
@@ -258,7 +259,6 @@ body {
     > *{
         display: inline-block;
         height: $value1;
-        @include respond-to-below(sm) { height: $value1-a; }
         margin: 0;
         padding: 0;
     }
@@ -267,7 +267,6 @@ body {
         li{
             display: inline-block;
             height: $value1;
-            @include respond-to-below(sm) { height: $value1-a; }
             @include box-sizing(border-box);
         }
     }
@@ -275,14 +274,12 @@ body {
         a{
             width: $value1;
             height: $value1;
-            @include respond-to-below(sm) { height: $value1-a;width: $value1-a; }
             display: block;
         }
         svg{
             position: absolute;
             width: ( $value1 - 10px ) - ( ( $value1  - 10px ) / 3 );
             margin: ( ( $value1 + 20px ) / 3 ) / 2;
-            @include respond-to-below(sm) { width: ( $value1-a - 10px ) - ( ( $value1-a  - 10px ) / 3 );margin: ( ( $value1-a + 20px ) / 3 ) / 2; }
         }
         .logo-book, .logo-arrow{
             fill: lighten($color4, 20%);
@@ -299,13 +296,10 @@ body {
     .search-block{
         width: 400px;
         padding: 15px 0;
-        @include respond-to-below(sm) { padding: 5px 0; }
         @include respond-to(sm) { width: 150px; }
-        @include respond-to-below(sm) { width: 100px; }
         form{
             button{
                 height: $value1 - 30px;
-                @include respond-to-below(sm) { height: $value1-a - 10px; }
                 border: none;
                 @include box-sizing(border-box);
                 @include border-radius(0);
@@ -321,7 +315,6 @@ body {
             input{
                 height: $value1 - 30px;
                 line-height: $value1 - 30px;
-                @include respond-to-below(sm) { height: $value1-a - 10px; line-height: $value1-a - 10px; }
                 @include box-sizing(border-box);
                 @include border-radius(0);
                 padding: 0 6px;
@@ -343,12 +336,10 @@ body {
             display: inline-block;
             margin: 10px 0;
             height: $value1 - 20px;
-            @include respond-to-below(sm) { height: $value1-a - 20px; }
             padding: 5px 0;
         }
         li{
             height: $value1 - 30px;
-            @include respond-to-below(sm) { height: $value1-a; }
             margin-left: 10px;
             &:last-child{
                 margin-left: 0;
@@ -379,6 +370,7 @@ body {
         }
         
     }
+    
 }
 
 #subheader{
@@ -746,6 +738,87 @@ body {
         }
         &:last-child{
             margin-bottom: 0;
+        }
+    }
+}
+
+
+@include respond-to-below(sm) {
+    #header{
+        height: $value1-a;
+        > *{
+            height: $value1-a;
+        }
+        ul li{
+            height: $value1-a;
+        }
+        .logo{
+            a{
+                height: $value1-a;
+                width: $value1-a;
+            }
+            svg{
+                width: ( $value1-a - 10px ) - ( ( $value1-a  - 10px ) / 3 );
+                margin: ( ( $value1-a + 20px ) / 3 ) / 2;
+            }
+        }
+        .search-block{
+            padding: 5px 0;
+            width: 100px;
+            form{
+                button{
+                    height: $value1-a - 10px;
+                }
+                input{
+                    height: $value1-a - 10px;
+                    line-height: $value1-a - 10px;
+                }
+            }
+        }
+        .action-btns{
+            > li{
+                margin: 0;
+                height: $value1-a;
+            }
+        }
+    }
+}
+@include respond-to-below(xs) {
+    #wrapper{
+        position: relative;
+        & > .container{
+            width: 100%;
+            position: relative;
+            top: $value1;
+            padding: 0;
+            & > .column{
+                float: right;
+            }
+            & > .col-1st{
+                width: $value2-a;
+                position: relative;
+            }
+            & > .col-2nd{
+                position: fixed;
+                top: $value1 + $value6;
+                width: $value2-a;
+                height: calc( 100% - #{$value1} );
+                & > .content{
+                    position: absolute;
+                    height: calc( 100% - #{$value7} );
+                    width: 100%;
+                }
+                & > .col-1st{
+                    position: absolute;
+                    top: 0;
+                    width: $value3;
+                }
+                & > .col-2nd{
+                    position: absolute;
+                    top: 0;
+                    width: $value3;
+                }
+            }
         }
     }
 }

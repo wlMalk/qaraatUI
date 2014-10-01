@@ -11,28 +11,8 @@ $value2 : 350px;
 $value3 : 250px;
 $value4 : 45px;
 $value5 : 3px;
-$value6 : 84px;
-$value7 : 200px;
+$value6 : 200px;
 
-$value1-a : 50px;
-
-$value2-a : 100%;
-
-$screen-lg : 1200px;
-$screen-md : 992px;
-$screen-sm : 768px;
-$screen-xs : 480px;
-
-$screen-lg-min : $screen-lg;
-$screen-md-min : $screen-md;
-$screen-sm-min : $screen-sm;
-$screen-xs-min : $screen-xs;
-$screen-tn-min : 0;
-
-$screen-md-max : $screen-lg-min - 1;
-$screen-sm-max : $screen-md-min - 1;
-$screen-xs-max : $screen-sm-min - 1;
-$screen-tn-max : $screen-xs-min - 1;
 
 @mixin box-sizing($box-model) {
   -webkit-box-sizing: $box-model; // Safari <= 5
@@ -85,67 +65,6 @@ $screen-tn-max : $screen-xs-min - 1;
      border-top-left-radius: $radius;
      background-clip: padding-box;
 }
-@mixin buttonToDarker($btnColor) {
-    background: $btnColor;
-    &:hover{
-        background: darken($btnColor, 5%);
-    }
-}
-@mixin buttonToLighter($btnColor, $withColor) {
-    background: $btnColor;
-    @if($withColor){
-        color: lighten($btnColor, 25%);
-    }
-    &:hover{
-        background: lighten($btnColor, 8%);
-        @if($withColor){
-            color: lighten(lighten($btnColor, 8%), 25%);
-        }
-    }
-}
-
-@mixin respond-to($size) {
-    @if $size == tn {
-        @media only screen and (max-width: $screen-tn-max) { @content; }
-    }
-    @else if $size == xs {
-        @media only screen and (min-width: $screen-xs) and (max-width: $screen-xs-max) { @content; }
-    }
-    @else if $size == sm {
-        @media only screen and (min-width: $screen-sm) and (max-width: $screen-sm-max) { @content; }
-    }
-    @else if $size == md {
-        @media only screen and (min-width: $screen-md) and (max-width: $screen-md-max) { @content; }
-    }
-    @else if $size == lg {
-        @media only screen and (min-width: $screen-lg) { @content; }
-    }
-}
-@mixin respond-to-below($size) {
-    @if $size == xs {
-        @media only screen and (max-width: $screen-xs) { @content; }
-    }
-    @else if $size == sm {
-        @media only screen and (max-width: $screen-sm) { @content; }
-    }
-    @else if $size == md {
-        @media only screen and (max-width: $screen-md) { @content; }
-    }
-    @else if $size == lg {
-        @media only screen and (max-width: $screen-lg) { @content; }
-    }
-}
-@mixin respond-to-above($size) {
-    @if $size == xs {
-        @media only screen and (min-width: $screen-xs) { @content; }
-    }
-    @else if $size == sm {
-        @media only screen and (min-width: $screen-sm) { @content; }
-    }
-    @else if $size == md {
-        @media only screen and (min-width: $screen-md) { @content; }
-    }
-}
 
 @font-face{
     font-family: DroidKufiBold;
@@ -155,34 +74,32 @@ $screen-tn-max : $screen-xs-min - 1;
     font-family: DroidKufiRegular;
     src: url(DroidKufi-Regular.ttf);
 }
-html{
-    height: 100%;
-    &.rtl{
-        direction: rtl;
-        text-align: right;
-        #nav{
-            right: 0;
-        }
-        #wrapper{
-            & > .container{
-                & > .column{
-                    float: right;
-                }
-                & > .col-1st{
-                    right: 0;
-                }
-                & > .col-2nd{
-                    right: $value2;
-                }
-                & > .col-3rd{
-                    left: 0;
-                }
+
+html.rtl{
+    direction: rtl;
+    text-align: right;
+    #nav{
+        right: 0;
+    }
+    #wrapper{
+        & > .container{
+            & > .column{
+                float: right;
+            }
+            & > .col-1st{
+                right: 0;
+            }
+            & > .col-2nd{
+                right: $value2;
+            }
+            & > .col-3rd{
+                left: 0;
             }
         }
     }
 }
-body {
-    min-height: 100%;
+
+body{
     background: $color4;
     margin: 0;
     font-family: 'DroidKufiRegular';
@@ -211,6 +128,29 @@ body {
         cursor: pointer;
     }
 }
+#header-logo{
+    a{
+        width: $value1;
+        height: $value1;
+        display: block;
+    }
+    svg{
+        position: absolute;
+        width: ( $value1 - 10px ) - ( ( $value1  - 10px ) / 3 );
+        margin: ( ( $value1 + 20px ) / 3 ) / 2;
+    }
+    .logo-book, .logo-arrow{
+        fill: lighten($color4, 20%);
+    }
+    &:hover{
+        .logo-book{
+            fill: $color3;
+        }
+        .logo-arrow{
+            fill: $color2;
+        }
+    }
+}
 #wrapper{
     position: relative;
     & > .container{
@@ -222,29 +162,21 @@ body {
             float: right;
         }
         & > .col-1st{
+            background: darken($color4, 2%);
             width: $value2;
-            position: relative;
+            position: absolute;
+            top: $value6;
         }
         & > .col-2nd{
             position: fixed;
             top: $value1 + $value6;
-            width: calc( 100% - #{$value2} );
+            width: calc( 100% - #{$value2 + $value3} );
             height: calc( 100% - #{$value1 + $value6} );
-            & > .content{
-                position: absolute;
-                height: calc( 100% - #{$value7} );
-                width: 100%;
-            }
-            & > .col-1st{
-                position: absolute;
-                top: 0;
-                width: $value3;
-            }
-            & > .col-2nd{
-                position: absolute;
-                top: 0;
-                width: $value3;
-            }
+        }
+        & > .col-3rd{
+            position: absolute;
+            top: 0;
+            width: $value3;
         }
     }
 }
@@ -270,33 +202,9 @@ body {
             @include box-sizing(border-box);
         }
     }
-    .logo{
-        a{
-            width: $value1;
-            height: $value1;
-            display: block;
-        }
-        svg{
-            position: absolute;
-            width: ( $value1 - 10px ) - ( ( $value1  - 10px ) / 3 );
-            margin: ( ( $value1 + 20px ) / 3 ) / 2;
-        }
-        .logo-book, .logo-arrow{
-            fill: lighten($color4, 20%);
-        }
-        &:hover{
-            .logo-book{
-                fill: $color3;
-            }
-            .logo-arrow{
-                fill: $color2;
-            }
-        }
-    }
     .search-block{
         width: 400px;
         padding: 15px 0;
-        @include respond-to(sm) { width: 150px; }
         form{
             button{
                 height: $value1 - 30px;
@@ -370,139 +278,34 @@ body {
         }
         
     }
-    
 }
 
 #subheader{
-    background: darken($color4, 5%);
+    background: $color6;
     height: $value6;
-    right: $value2;
+    right: 0;
     position: fixed;
     top: $value1;
-    width: calc( 100% - #{$value2} );
+    width: calc( 100% - #{$value3} );
     z-index: 5;
-    .book-info{
-        position: relative;
-        z-index: 4;
-        height: $value6;
-        .book-cover{
-            width: $value1 + 20px;
-            float: right;
-            z-index: 2;
-            position: relative;
-            a{
-                display: block;
-                width: $value1;
-                @include box-sizing(content-box);
-                background: $color3;
-                margin: 10px;
-                margin-left: 0; //rtl
-                padding: 5px;
-                img{
-                    width: $value1;
-                }
+    .book-cover{
+        width: $value2;
+        a{
+            display: block;
+            width: $value2;
+            @include box-sizing(border-box);
+            background: $color3;
+            img{
+                width: $value2;
             }
-            &:hover{
-                a{
-                    width: $value1 * 3;
-                    img{
-                        width: $value1 * 3;
-                    }
-                }
-            }
-        }
-        .book-title{
-            display: inline-block;
-            margin: 10px;
-            margin-left: 100px;//rtl
-            h1{
-                margin: 0;
-                padding: 0;
-                font-size: 28px;
-                display: block;
-                font-weight: bold;
-                color: #fcfcfc;
-                cursor: pointer;
-                height: 44px;
-                line-height: 30px;
-                &:hover{
-                }
-            }
-            h2{
-                margin: 0;
-                font-size: 11px;
-                font-weight: normal;
-                color: lighten($color4, 25%);
-                position: relative;
-                display: inline-block;
-                padding: 0;
-                cursor: pointer;
-                margin-left: 10px;//rtl
-                span{
-                    color: lighten($color4, 15%);
-                    margin-right: 5px;//rtl
-                }
-                &:hover{
-                }
-            }
-        }
-        .action-btns{
-            position: absolute;
-            left: 0;//rtl
-            list-style: none;
-            top: 0;
-            width: 100px;
         }
     }
 }
 #map-canvas{
     background: $color4;
     position: absolute;
-    top: 0;
-    right: 0;
     width: 100%;
     height: 100%;
-}
-#map-tools{
-    background: darken($color4, 5%);
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 50%;
-    height: $value4 - 5;
-    @include respond-to-below(md) { width: 100%; }
-    ul{
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        position: absolute;
-        top: 0;
-        height: $value4 - 5;
-        &:first-child, &:last-child{
-            width: ($value4 - 5) * 2;
-            li{
-                width: $value4 - 5;
-                height: $value4 - 5;
-                float: right; //rtl
-                cursor: pointer;
-                @include buttonToLighter(lighten($color4, 15%), true);
-                text-align: center;
-                line-height: $value4 - 5;
-                font-size: 20px;
-            }
-        }
-        &:nth-child(1){
-            right: 0;//rtl
-        }
-        &:nth-child(2){
-            right: ($value4 - 5) * 2;
-            width: calc( 100% - #{($value4 - 5) * 4} );
-        }
-        &:nth-child(3){
-            left: 0;
-        }
-    }
-        
 }
 
 #subheader-2nd{
@@ -516,8 +319,10 @@ body {
 
 
 #locations-timeline{
-    padding: 10px 0;
+    background: $color4;
+    padding-top: 10px;
     position: relative;
+    overflow: auto;
     .timeline{
         height: 100%;
         width: 0;
@@ -674,7 +479,7 @@ body {
                     font-family: tahoma;
                     font-size: 10px;
                     padding: 0;
-                    min-height: 54px;
+                    min-height: 42px;
                     text-align: justify;
                     direction: rtl;//rtl
                     line-height: 15px;
@@ -715,14 +520,20 @@ body {
                 .rating{
                     height: 18px;
                     width: 90px;
+                    background: #272e34;
                     float: left;
-                    color: #ffd700;
-                    span{
+                    .stars{
                         height: 18px;
-                        width: 18px;
-                        line-height: 0px;
-                        font-size: 17px;
-                        text-align: center;
+                        width: 90px;
+                        display: block;
+                        background: url(srating.png);
+                        background-size: 90px 18px;
+                        position: absolute;
+                    }
+                    .stars-bar{
+                        height: 18px;
+                        display: block;
+                        background: #ffd700;
                         float: left;
                     }
                 }
@@ -734,90 +545,6 @@ body {
         &:hover{
             .timeline-location-block-btns{
                 opacity: .75;
-            }
-        }
-        &:last-child{
-            margin-bottom: 0;
-        }
-    }
-}
-
-
-@include respond-to-below(sm) {
-    #header{
-        height: $value1-a;
-        > *{
-            height: $value1-a;
-        }
-        ul li{
-            height: $value1-a;
-        }
-        .logo{
-            a{
-                height: $value1-a;
-                width: $value1-a;
-            }
-            svg{
-                width: ( $value1-a - 10px ) - ( ( $value1-a  - 10px ) / 3 );
-                margin: ( ( $value1-a + 20px ) / 3 ) / 2;
-            }
-        }
-        .search-block{
-            padding: 5px 0;
-            width: 100px;
-            form{
-                button{
-                    height: $value1-a - 10px;
-                }
-                input{
-                    height: $value1-a - 10px;
-                    line-height: $value1-a - 10px;
-                }
-            }
-        }
-        .action-btns{
-            > li{
-                margin: 0;
-                height: $value1-a;
-            }
-        }
-    }
-}
-@include respond-to-below(xs) {
-    #wrapper{
-        position: relative;
-        & > .container{
-            width: 100%;
-            position: relative;
-            top: $value1;
-            padding: 0;
-            & > .column{
-                float: right;
-            }
-            & > .col-1st{
-                width: $value2-a;
-                position: relative;
-            }
-            & > .col-2nd{
-                position: fixed;
-                top: $value1 + $value6;
-                width: $value2-a;
-                height: calc( 100% - #{$value1} );
-                & > .content{
-                    position: absolute;
-                    height: calc( 100% - #{$value7} );
-                    width: 100%;
-                }
-                & > .col-1st{
-                    position: absolute;
-                    top: 0;
-                    width: $value3;
-                }
-                & > .col-2nd{
-                    position: absolute;
-                    top: 0;
-                    width: $value3;
-                }
             }
         }
     }
