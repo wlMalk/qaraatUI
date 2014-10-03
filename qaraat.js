@@ -90,8 +90,9 @@ function setBookPageDimensions(){
     var windowHeight = $(window).height();
     var value1 = $('#header').height();
     var value2 = $('#subheader').height();
+    var value6 = $('.container > .col-2nd .content.stats-holder').height();
     
-    $('#map-canvas, .container > .col-2nd .map-holder').height(windowHeight-value1-value2-200);
+    $('#map-canvas, .container > .col-2nd .content.map-holder').height(windowHeight-value1-value2-value6);
     $('.container > .col-1st').height(windowHeight-value1);
 }
 

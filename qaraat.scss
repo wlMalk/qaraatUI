@@ -16,7 +16,8 @@ $value7 : 200px;
 
 $value1-a : 50px;
 
-$value2-a : 100%;
+$value2-a : 250px;
+$value2-b : 100%;
 
 $screen-lg : 1200px;
 $screen-md : 992px;
@@ -188,6 +189,9 @@ html{
                     overflow-x: hidden;
                     overflow-y: scroll;
                     top: $value1;
+                    @include respond-to-below(sm) {
+                        top: $value1-a;
+                    }
                     #locations-timeline{
                         min-height: 100%;
                         position: absolute;
@@ -256,6 +260,13 @@ body {
                 }
                 & > .col-2nd{
                     width: $value3;
+                }
+            }
+            & > .content.stats-holder{
+                height: $value7;
+                background: $color6;
+                & > div{
+                    height: $value7;
                 }
             }
         }
@@ -389,7 +400,7 @@ body {
 #subheader{
     background: darken($color4, 5%);
     height: $value6;
-    right: $value2;
+    right: $value2;//rtl
     position: fixed;
     top: $value1;
     width: calc( 100% - #{$value2} );
@@ -757,6 +768,26 @@ body {
 
 
 @include respond-to-below(sm) {
+    html.rtl{
+        #wrapper{
+            & > .container{
+                & > .col-2nd{
+                    right: $value2-a;
+                }
+            }
+        }
+        #subheader{
+            right: $value2-a;//rtl
+        }
+    }
+    #wrapper{
+        & > .container{
+            top: $value1-a;
+            & > .col-2nd{
+                width: calc( 100% - #{$value2-a} );
+            }
+        }
+    }
     #header{
         height: $value1-a;
         > *{
@@ -792,6 +823,25 @@ body {
             > li{
                 margin: 0;
                 height: $value1-a;
+            }
+        }
+    }
+    #subheader{
+        top: $value1-a;
+        width: calc( 100% - #{$value2-a} );
+    }
+    #locations-timeline{
+        padding: 10px 0;
+        .timeline-location-block{
+            width: $value2-a - 10px;
+            .arrow{
+                left: 45px;//rtl
+                border-right: 15px solid darken($color4, 4%);
+                border-bottom: 15px solid transparent;
+                border-top: 15px solid transparent;
+            }
+            .timeline-location-block-main{
+                width: $value2-a - 70px;
             }
         }
     }
