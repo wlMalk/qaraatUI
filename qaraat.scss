@@ -180,6 +180,22 @@ html{
             }
         }
     }
+    &.js{
+        #wrapper{
+            & > .container{
+                & > .col-1st{
+                    position: fixed;
+                    overflow-x: hidden;
+                    overflow-y: scroll;
+                    top: $value1;
+                    #locations-timeline{
+                        min-height: 100%;
+                        position: absolute;
+                    }
+                }
+            }
+        }
+    }
 }
 body {
     min-height: 100%;
@@ -226,24 +242,21 @@ body {
             position: relative;
         }
         & > .col-2nd{
-            position: fixed;
-            top: $value1 + $value6;
+            position: relative;
+            top: $value6;
             width: calc( 100% - #{$value2} );
             height: calc( 100% - #{$value1 + $value6} );
             & > .content{
-                position: absolute;
-                height: calc( 100% - #{$value7} );
-                width: 100%;
-            }
-            & > .col-1st{
-                position: absolute;
-                top: 0;
-                width: $value3;
-            }
-            & > .col-2nd{
-                position: absolute;
-                top: 0;
-                width: $value3;
+                position: relative;
+                & > .column{
+                    float: right;
+                }
+                & > .col-1st{
+                    width: calc( 100% - #{$value3} );
+                }
+                & > .col-2nd{
+                    width: $value3;
+                }
             }
         }
     }

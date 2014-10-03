@@ -88,7 +88,11 @@ function initializeBookPage(){
 
 function setBookPageDimensions(){
     var windowHeight = $(window).height();
-    $('#map-canvas').height(windowHeight);
+    var value1 = $('#header').height();
+    var value2 = $('#subheader').height();
+    
+    $('#map-canvas, .container > .col-2nd .map-holder').height(windowHeight-value1-value2-200);
+    $('.container > .col-1st').height(windowHeight-value1);
 }
 
 function initializeBookMap(){
