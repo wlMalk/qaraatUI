@@ -87,7 +87,7 @@ function initializeBookPage(){
 }
 
 function setBookPageDimensions(){
-    var windowHeight = $(window).height();
+    var windowHeight = window.innerHeight;
     var value1 = $('#header').height();
     var value2 = $('#subheader').height();
     var value6 = $('.container > .col-2nd .content.stats-holder').height();
