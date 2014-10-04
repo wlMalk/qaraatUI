@@ -188,6 +188,7 @@ html{
                     position: fixed;
                     overflow-x: hidden;
                     overflow-y: scroll;
+                    -webkit-overflow-scrolling: touch;
                     top: $value1;
                     @include respond-to-below(sm) {
                         top: $value1-a;
