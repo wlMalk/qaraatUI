@@ -13,11 +13,14 @@ $value4 : 45px;
 $value5 : 3px;
 $value6 : 84px;
 $value7 : 200px;
+$value8 : 30px;
 
 $value1-a : 50px;
 
 $value2-a : 250px;
 $value2-b : 100%;
+
+$value3-a : 150px;
 
 $screen-lg : 1200px;
 $screen-md : 992px;
@@ -49,6 +52,17 @@ $screen-tn-max : $screen-xs-min - 1;
     -webkit-box-shadow: $top $left $blur $color;
        -moz-box-shadow: $top $left $blur $color;
             box-shadow: $top $left $blur $color;
+  }
+}
+@mixin box-shadow-a($top, $left, $blur, $offset, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $offset $color;
+       -moz-box-shadow:inset $top $left $blur $offset $color;
+            box-shadow:inset $top $left $blur $offset $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $offset $color;
+       -moz-box-shadow: $top $left $blur $offset $color;
+            box-shadow: $top $left $blur $offset $color;
   }
 }
 @mixin border-radius($radius) {
@@ -186,12 +200,18 @@ html{
             & > .container{
                 & > .col-1st{
                     position: fixed;
-                    overflow-x: hidden;
-                    overflow-y: scroll;
-                    -webkit-overflow-scrolling: touch;
+                    overflow: hidden;
                     top: $value1;
                     @include respond-to-below(sm) {
                         top: $value1-a;
+                    }
+                    & > .content{
+                        height: 100%;
+                        width: 100%;
+                        overflow-x: hidden;
+                        overflow-y: scroll;
+                        -webkit-overflow-scrolling: touch;
+                        position: absolute;
                     }
                     #locations-timeline{
                         min-height: 100%;
@@ -258,6 +278,14 @@ body {
                 }
                 & > .col-1st{
                     width: calc( 100% - #{$value3} );
+                    background: #f1f1f1;
+                    & > .content-in{
+                        margin: $value8;
+                        margin-bottom: 0;
+                        &:last-child{
+                            margin-bottom: $value8;
+                        }
+                    }
                 }
                 & > .col-2nd{
                     width: $value3;
@@ -306,15 +334,18 @@ body {
             width: ( $value1 - 10px ) - ( ( $value1  - 10px ) / 3 );
             margin: ( ( $value1 + 20px ) / 3 ) / 2;
         }
-        .logo-book, .logo-arrow{
-            fill: lighten($color4, 20%);
+        .logo-book{
+            fill: $color3;
+        }
+        .logo-arrow{
+            fill: $color2;
         }
         &:hover{
             .logo-book{
-                fill: $color3;
+                fill: lighten($color3, 10%);
             }
             .logo-arrow{
-                fill: $color2;
+                fill: lighten($color2, 10%);
             }
         }
     }
@@ -539,6 +570,14 @@ body {
     z-index: 9;
 }
 
+.scroll-indicator{
+    height: 0;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    @include box-shadow-a(0, 0, 70px, 35px, saturate(lighten($color4, 30%), 10%), false);
+    z-index: 1;
+}
 
 #locations-timeline{
     padding: 10px 0;
@@ -768,6 +807,11 @@ body {
 }
 
 
+#footer{
+    height: $value1;
+    clear: both;
+}
+
 @include respond-to-below(sm) {
     html.rtl{
         #wrapper{
@@ -784,8 +828,19 @@ body {
     #wrapper{
         & > .container{
             top: $value1-a;
+            & > .col-1st{
+                width: $value2-a;
+            }
             & > .col-2nd{
                 width: calc( 100% - #{$value2-a} );
+                & > .content{
+                    & > .col-1st{
+                        width: calc( 100% - #{$value3-a} );
+                    }
+                    & > .col-2nd{
+                        width: $value3-a;
+                    }
+                }
             }
         }
     }
@@ -803,8 +858,8 @@ body {
                 width: $value1-a;
             }
             svg{
-                width: ( $value1-a - 10px ) - ( ( $value1-a  - 10px ) / 3 );
-                margin: ( ( $value1-a + 20px ) / 3 ) / 2;
+                width: ( $value1-a ) - ( ( $value1-a ) / 4 );
+                margin: ( ( $value1-a ) / 4 ) / 2;
             }
         }
         .search-block{

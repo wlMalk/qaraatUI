@@ -87,6 +87,19 @@ function initializeBookPage(){
 }
 
 function setBookPageDimensions(){
+    col1ST = $('.container > .col-1st .content');
+    $(col1ST).scroll(function (){
+        if (isScrollBottom($(col1ST))) {
+            col1ST.attr('bottom-reached', 'true');
+            col1ST.parent().find('.scroll-indicator').fadeOut(300);
+        }else{
+            if(col1ST.is('[bottom-reached]')){
+                col1ST.parent().find('.scroll-indicator').fadeIn(300);
+                col1ST.removeAttr('bottom-reached');
+            }
+        }
+    });
+    
     var windowHeight = window.innerHeight;
     var value1 = $('#header').height();
     var value2 = $('#subheader').height();
@@ -95,6 +108,14 @@ function setBookPageDimensions(){
     $('#map-canvas, .container > .col-2nd .content.map-holder').height(windowHeight-value1-value2-value6);
     $('.container > .col-1st').height(windowHeight-value1);
 }
+
+
+
+function isScrollBottom(subject) {
+    var elementHeight = subject[0].scrollHeight;
+    var scrollPosition = subject.height() + subject.scrollTop();
+    return (elementHeight == scrollPosition);
+};
 
 function initializeBookMap(){
     currentIndex = bookCoordinates.length-1;
