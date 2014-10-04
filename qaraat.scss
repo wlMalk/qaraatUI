@@ -812,17 +812,28 @@ body {
     clear: both;
 }
 
-@include respond-to-below(sm) {
-    html.rtl{
-        #wrapper{
-            & > .container{
-                & > .col-2nd{
-                    right: $value2-a;
+@include respond-to-below(md) {
+    html{
+        &.rtl{
+            #wrapper{
+                & > .container{
+                    & > .col-2nd{
+                        right: $value2-a;
+                    }
                 }
             }
+            #subheader{
+                right: $value2-a;//rtl
+            }
         }
-        #subheader{
-            right: $value2-a;//rtl
+        &.js{
+            #wrapper{
+                & > .container{
+                    & > .col-1st{
+                        top: $value1-a;
+                    }
+                }
+            }
         }
     }
     #wrapper{
@@ -902,41 +913,70 @@ body {
         }
     }
 }
-@include respond-to-below(xs) {
+@include respond-to-below(sm) {
+    html{
+        &.rtl{
+            #wrapper{
+                & > .container{
+                    & > .col-2nd{
+                        right: 0;//rtl
+                    }
+                }
+            }
+            #subheader{
+                right: 0;//rtl
+            }
+        }
+        &.js{
+            #wrapper{
+                & > .container{
+                    & > .col-1st{
+                        top: $value6;
+                        position: relative;
+                    }
+                }
+            }
+        }
+    }
+    #subheader{
+        width: $value2-b;
+    }
     #wrapper{
         position: relative;
         & > .container{
             width: 100%;
             position: relative;
-            top: $value1;
+            top: $value1-a;
             padding: 0;
             & > .column{
-                float: right;
+                float: none;
             }
             & > .col-1st{
-                width: $value2-a;
+                width: $value2-b;
                 position: relative;
+                & > .content{
+                    position: relative !important;
+                }
+                #locations-timeline{
+                    position: relative !important;
+                    padding: 10px 0;
+                    width: $value2-b;
+                    .timeline-location-block{
+                        width: calc( #{$value2-b} - 10px );
+                        .arrow{
+                            left: 45px;//rtl
+                            border-right: 15px solid darken($color4, 4%);
+                            border-bottom: 15px solid transparent;
+                            border-top: 15px solid transparent;
+                        }
+                        .timeline-location-block-main{
+                            width: calc( #{$value2-b} - 20px );
+                        }
+                    }
+                }
             }
             & > .col-2nd{
-                position: fixed;
-                top: $value1 + $value6;
-                width: $value2-a;
-                height: calc( 100% - #{$value1} );
-                & > .content{
-                    position: absolute;
-                    height: calc( 100% - #{$value7} );
-                    width: 100%;
-                }
-                & > .col-1st{
-                    position: absolute;
-                    top: 0;
-                    width: $value3;
-                }
-                & > .col-2nd{
-                    position: absolute;
-                    top: 0;
-                    width: $value3;
-                }
+                width: $value2-b;
             }
         }
     }

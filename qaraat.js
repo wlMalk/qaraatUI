@@ -82,11 +82,25 @@ function zoomOut(){
 }
 
 function initializeBookPage(){
-    setBookPageDimensions();
+    prepareBookPage();
     initializeBookMap();
 }
 
-function setBookPageDimensions(){
+function prepareBookPage(){
+    var mapHolderElement = '<div class="content map-holder"><div id="map-canvas"></div><nav id="map-tools"><ul class="map-tool"><li><span class="glyphicon glyphicon ion-plus"></span></li><li><span class="glyphicon glyphicon ion-minus"></span></li></ul><ul class="map-locations"></ul><ul class="map-tool"><li><span class="glyphicon ion-chevron-right"></span></li><li><span class="glyphicon ion-chevron-left"></span></li></ul></nav></div>';
+    $('html').removeClass('screen-xs');
+    $('html').removeClass('screen-sm');
+    $('html').removeClass('screen-md');
+    $('html').removeClass('screen-lg');
+    $('html').addClass(detectSize());
+        
+    if(!$('html').hasClass('screen-xs')){
+        if(!$('#map-canvas').length)
+            $('#subheader').after(mapHolderElement);
+    }else{
+        
+    }
+
     col1ST = $('.container > .col-1st .content');
     $(col1ST).scroll(function (){
         if (isScrollBottom($(col1ST))) {
@@ -100,22 +114,39 @@ function setBookPageDimensions(){
         }
     });
     
+    
     var windowHeight = window.innerHeight;
     var value1 = $('#header').height();
     var value2 = $('#subheader').height();
     var value6 = $('.container > .col-2nd .content.stats-holder').height();
     
-    $('#map-canvas, .container > .col-2nd .content.map-holder').height(windowHeight-value1-value2-value6);
-    $('.container > .col-1st').height(windowHeight-value1);
+    if(!$('html').hasClass('screen-xs')){
+        $('.container > .col-1st').height(windowHeight-value1);
+        $('#map-canvas, .container > .col-2nd .content.map-holder').height(windowHeight-value1-value2-value6);
+    }
 }
 
-
+function detectSize(){
+    if(isBreakpoint('xs')) {
+        return 'screen-xs';
+    }else if(isBreakpoint('sm')){
+        return 'screen-sm';
+    }else if(isBreakpoint('md')){
+        return 'screen-md';
+    }else if(isBreakpoint('lg')){
+        return 'screen-lg';
+    }
+}
 
 function isScrollBottom(subject) {
     var elementHeight = subject[0].scrollHeight;
     var scrollPosition = subject.height() + subject.scrollTop();
     return (elementHeight == scrollPosition);
-};
+}
+
+function isBreakpoint( alias ) {
+    return $('.device-' + alias).is(':visible');
+}
 
 function initializeBookMap(){
     currentIndex = bookCoordinates.length-1;
