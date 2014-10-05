@@ -98,7 +98,8 @@ function prepareBookPage(){
         if(!$('#map-canvas').length)
             $('#subheader').after(mapHolderElement);
     }else{
-        
+        if(!$('#map-canvas').length)
+            $('.container > .col-1st').prepend(mapHolderElement);
     }
 
     col1ST = $('.container > .col-1st .content');
@@ -123,6 +124,8 @@ function prepareBookPage(){
     if(!$('html').hasClass('screen-xs')){
         $('.container > .col-1st').height(windowHeight-value1);
         $('#map-canvas, .container > .col-2nd .content.map-holder').height(windowHeight-value1-value2-value6);
+    }else{
+        $('.content.map-holder').height($('.content.map-holder').width());
     }
 }
 
